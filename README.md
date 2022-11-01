@@ -1,6 +1,7 @@
 news-api
 
-**how to REQUEST data**
+**how to REQUEST data** 
+
 To request Data, you must first run the server.py file locally on your computer. Then using ZMQ for Javascript, you can make a request using sockets and sending a json
 of the country and news outlet. 
 
