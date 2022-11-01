@@ -15,4 +15,4 @@ the title, description, and url of the article
 
 **UML sequence diagram**
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-![image](https://user-images.githubusercontent.com/91445581/199154229-1564b469-9016-4991-b89e-7264d82d5ffc.png)
+![image](https://user-images.githubusercontent.com/91445581/199154276-946aaab4-389d-4bce-bfdc-fae6c9667c7c.png)
