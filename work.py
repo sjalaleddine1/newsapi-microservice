@@ -1,23 +1,27 @@
-import requests, json
+#
+#   Hello World client in Python
+#   Connects REQ socket to tcp://localhost:5555
+#   Sends "Hello" to server, expects "World" back
+#
 
-def get_api_zipcode(country, news_outlet):
-    url = "https://newsapi.org/v2/" \
-              "top-headlines?country={}&apiKey=6db89d56e492480593a9e23072586219".format(country)
-    req = requests.get(url)
-    req = req.json()
-    title = desc = link = ""
-    articles = req["articles"]
+import zmq, json
 
-    for article in articles:
-        if article["source"]["name"] == news_outlet:
-            title = article["title"]
-            desc = article["description"]
-            link = article["url"]
-    res = [title, desc, link]
-    jsonRes = json.dumps(res)
+context = zmq.Context()
 
-    return jsonRes
+#  Socket to talk to server
+print("Connecting to hello world server…")
+socket = context.socket(zmq.REQ)
+socket.connect("tcp://localhost:5554")
 
-    
-    
-print(get_api_zipcode("us", "CNN"))
+#  Do 10 requests, waiting each time for a response
+for request in range(1):
+    print("Sending request…")
+    # req = ["40.045181", "-75.441208"]
+    req = ['39.7392', '104.9903']
+    req_json = json.dumps(req)
+    socket.send_json(req_json)
+
+    #  Get the reply.
+    message = socket.recv_json()
+    print("Received reply %s [ %s ]" % (request, message))
+
